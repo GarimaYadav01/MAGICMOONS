@@ -14,14 +14,14 @@ const Loginscreen = () => {
                 </View>
                 <View style={styles.container}>
                     <View style={{ alignSelf: "center", marginTop: height * 0.04 }}>
-                        <TextinputComponent  placeholder={"Enter your email"} />
-                        <TextinputComponent  placeholder={"Enter your password"} />
+                        <TextinputComponent placeholder={"Enter your email"} />
+                        <TextinputComponent placeholder={"Enter your password"} />
                     </View>
                     <View style={{ justifyContent: "flex-end", alignContent: "flex-end", marginLeft: width * 0.6, marginTop: 20 }}>
                         <TouchableOpacity onPress={() => navigation.navigate("ForgetScreen")}>
-                        <Text style={styles.forget}>Forget Password?</Text>
+                            <Text style={styles.forget}>Forget Password?</Text>
                         </TouchableOpacity>
-                       
+
                     </View>
                     <View style={{ marginTop: height * 0.03 }}>
                         <CustomButton label={"Login Now"} size={"large"} />
@@ -42,7 +42,7 @@ const Loginscreen = () => {
 
                     </View>
 
-                    <Text style={styles.text}>Don't have an account ? <Text style={{color:"black"}} onPress={() => navigation.navigate("Sginupscreen")}>Register Now</Text></Text>
+                    <Text style={styles.text}>Don't have an account ? <Text style={{ color: "black" }} onPress={() => navigation.navigate("Sginupscreen")}>Register Now</Text></Text>
                 </View>
             </ScrollView>
 
@@ -78,9 +78,9 @@ const styles = StyleSheet.create({
     text: {
         color: "gray",
         fontSize: 17,
-        fontWeight:"500",
-        textAlign:"center",
-        marginTop:20
+        fontWeight: "500",
+        textAlign: "center",
+        marginTop: 20
 
     }
 
