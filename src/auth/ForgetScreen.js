@@ -13,18 +13,18 @@ const ForgetScreen = () => {
                     <Image source={require("../image/withbglogo.png")} style={{ width: 150, height: 150 }} />
                 </View>
                 <View style={styles.container}>
-                    <View style={{marginHorizontal:20,marginTop:height*0.07}}>
+                    <View style={{ marginHorizontal: 20, marginTop: height * 0.07 }}>
                         <Text style={styles.forget}>Forget Password</Text>
                         <Text style={styles.enter}>Enter your Register Email and Check Recover account</Text>
                     </View>
 
                     <View style={{ alignSelf: "center", marginTop: height * 0.01 }}>
-                        <TextinputComponent  placeholder={"Enter your email"} />
+                        <TextinputComponent placeholder={"Enter your email"} />
 
                     </View>
 
-                    <View style={{ marginTop: height * 0.03 }}>
-                        <CustomButton label={"Recover Account"} size={"large"} />
+                    <View style={{ marginTop: height * 0.07 }}>
+                        <CustomButton label={"Recover Account"} size={"large"} onPress={() => navigation.navigate("Loginscreen")} />
                     </View>
 
 
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "black",
         fontWeight: "400",
+        marginTop: 10
         // textAlign: "center"
 
     },

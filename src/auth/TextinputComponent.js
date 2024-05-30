@@ -34,7 +34,7 @@ const TextinputComponent = ({ label, placeholder, secureTextEntry, inputType, on
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-        <View style={{marginTop:height*0.023}}>
+        <View>
           <Text style={styles.textInputLabel}>
             {label}
           </Text>
@@ -50,6 +50,7 @@ const TextinputComponent = ({ label, placeholder, secureTextEntry, inputType, on
               onBlur={onBlur}
               value={value}
               placeholderTextColor={"gray"}
+              placeholderStyle={{ fontSize: 20, fontWeight: "500" }}
               editable={!disabled}
             />
             {inputType === 'password' && (
@@ -73,11 +74,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width * 0.86,
     borderWidth: 1,
-    paddingVertical: Platform.OS === 'ios' ? 15 : 3,
+    // paddingVertical: Platform.OS === 'ios' ? 15 : 3,
     paddingHorizontal: 15,
     borderRadius: 10,
     borderColor: "#ffffff",
-    marginTop: height * 0.01,
+    // marginTop: height * 0.01,
     color: "black",
     backgroundColor: "#ffffff",
     // Shadow properties for iOS
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     // Shadow property for Android
     elevation: 5,
+    marginBottom:-25
   },
   icon: {
     marginRight: 10,
@@ -105,12 +107,14 @@ const styles = StyleSheet.create({
   },
   inputField: {
     flex: 1,
-    color: "black"
+    color: "black",
+    // marginTop:10
   },
   textInputLabel: {
     color: "black",
     fontSize: 18,
-    marginTop: 10,
+    // marginVertical: 10,
+    // marginTop:10,
     fontWeight: "500",
 
 

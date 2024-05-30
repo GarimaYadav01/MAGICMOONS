@@ -6,7 +6,7 @@ const Splash = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigation.navigate("Loginscreen")
-        }, 3000); // Change the delay as needed (3000 milliseconds = 3 seconds)
+        }, 2000); // Change the delay as needed (3000 milliseconds = 3 seconds)
 
         // Cleanup function to clear the timer when the component unmounts
         return () => clearTimeout(timer);

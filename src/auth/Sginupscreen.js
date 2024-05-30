@@ -4,8 +4,24 @@ import TextinputComponent from './TextinputComponent'
 import CustomButton from './Custombutton'
 import { useNavigation } from '@react-navigation/native'
 const { height, width } = Dimensions.get("screen")
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 const Sginupscreen = () => {
     const navigation = useNavigation();
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Invalid email')
+            .required('Email is required'),
+        password: Yup.string()
+            .required('Password is required')
+            .min(6, 'Password must be at least 6 characters'),
+        name: Yup.string()
+            .required('Name is required'),
+
+        mobilenumber: Yup.string()
+            .required('Password is required')
+            .min(8, 'mobilenumber should be 8 should be or leass then 15'),
+    });
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
@@ -14,31 +30,50 @@ const Sginupscreen = () => {
                 </View>
                 <View style={styles.container}>
                     <Text style={styles.forget}>Register Now</Text>
-                    <View style={{ alignSelf: "center", marginTop: height * 0.04 }}>
-                        <TextinputComponent placeholder={"Enter your email"} />
-                        <TextinputComponent placeholder={"Enter your password"} />
+                    <Formik
+                        initialValues={{ email: '', password: '', name: '', mobilenumber: '' }}
+                        validationSchema={validationSchema}
+                        onSubmit={(values, actions) => {
+                            handleLogin(values);
+                            // navigation.navigate("Homescreen")
+                            // actions.resetForm(); 
+                        }}
+                    >
+                        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+                            <>
+                                <View style={{ alignSelf: "center", }}>
+                                    <TextinputComponent placeholder={" Name"} nChangeText={handleChange('name')}
+                                        onBlur={handleBlur('name')}
+                                        value={values.name}
+                                        error={touched.name && errors.name} />
+                                    <Text style={styles.error}>{touched.name && errors.name}</Text>
+                                    <TextinputComponent placeholder={"Mobile no."} nChangeText={handleChange('mobilenumber')}
+                                        onBlur={handleBlur('mobilenumber')}
+                                        value={values.mobilenumber}
+                                        error={touched.mobilenumber && errors.mobilenumber} />
+                                    <Text style={styles.error}>{touched.mobilenumber && errors.mobilenumber}</Text>
+                                    <TextinputComponent placeholder={" Email"} onChangeText={handleChange('email')}
+                                        onBlur={handleBlur('email')}
+                                        value={values.email}
+                                        error={touched.email && errors.email} />
+                                    <Text style={styles.error}>{touched.email && errors.email}</Text>
+                                    <TextinputComponent placeholder={"Password"} onChangeText={handleChange('password')}
+                                        onBlur={handleBlur('password')}
+                                        value={values.password}
+                                        error={touched.password && errors.password} />
+                                    <Text style={styles.error}>{touched.password && errors.password}</Text>
+                                </View>
+
+                                <View style={{ marginTop: height * 0.04 }}>
+                                    <CustomButton label={"Register Now"} size={"large"} onPress={handleSubmit} />
+                                </View>
+                            </>
+                        )}
+                    </Formik>
+                    <View style={styles.about}>
+                        <Text style={styles.text}>Already Have a Account <Text style={{ color: "black", }} onPress={() => navigation.navigate("Loginscreen")}>Login Now</Text></Text>
                     </View>
 
-                    <View style={{ marginTop: height * 0.03 }}>
-                        <CustomButton label={"Login Now"} size={"large"} />
-                    </View>
-                    <Text style={styles.or}>Or</Text>
-                    <View style={{ flexDirection: "row", alignSelf: "center", justifyContent: "space-between", columnGap: 10, marginTop: height * 0.03, alignItems: "center" }}>
-                        <TouchableOpacity>
-
-                            <Image source={require("../image/google.png")} style={{ width: 50, height: 50, marginTop: 10 }} />
-
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ marginLeft: 20 }}>
-                            <Image source={require("../image/apple.png")} style={{ width: 60, height: 60 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ marginLeft: 20 }}>
-                            <Image source={require("../image/facebbok.jpg")} style={{ width: 70, height: 70, marginTop: 10 }} />
-                        </TouchableOpacity>
-
-                    </View>
-
-                    <Text style={styles.text}>Don't have an account ? <Text style={{ color: "black" }} onPress={() => navigation.navigate("Sginupscreen")}>Register Now</Text></Text>
                 </View>
             </ScrollView>
 
@@ -59,11 +94,7 @@ const styles = StyleSheet.create({
         // borderColor: "#000" ,
         height: height * 0.75
     },
-    forget: {
-        color: "black",
-        fontSize: 17,
-        fontWeight: "500"
-    },
+
     or: {
         fontSize: 34,
         color: "black",
@@ -72,18 +103,54 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        color: "gray",
+        color: "black",
         fontSize: 17,
         fontWeight: "500",
         textAlign: "center",
-        marginTop: 20
+        // marginTop: 20,
+
 
     },
     forget: {
         color: "black",
         fontSize: 25,
         fontWeight: "600",
+        marginHorizontal: 30,
+        marginTop: height * 0.04
 
     },
+    about: {
+
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: width * 0.86,
+        borderWidth: 1,
+        paddingVertical: Platform.OS === 'ios' ? 15 : 5,
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        borderColor: "#ffffff",
+        marginTop: height * 0.03,
+        color: "black",
+        backgroundColor: "#ffffff",
+        // Shadow properties for iOS
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        // Shadow property for Android
+        elevation: 5,
+        textAlign: "center",
+        alignSelf: "center",
+        justifyContent: "center"
+
+    },
+    error: {
+        // marginBottom: -height*0.01,
+        color: "red",
+        marginTop: height * 0.03
+    }
 
 })
