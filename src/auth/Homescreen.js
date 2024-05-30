@@ -30,10 +30,10 @@ const HomeScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{marginHorizontal:20}}>
-            <Text style={styles.cor}>Courses</Text>
+            <View style={{ marginHorizontal: 20 }}>
+                <Text style={styles.cor}>Courses</Text>
             </View>
-         
+
             <FlatList
                 data={data}
                 renderItem={renderItem}
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#FFF",
-        
+
     },
     header: {
         flexDirection: 'row',
@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
     },
-    cor:{
-       fontSize:25,
-       color:"black",
-       fontWeight:"bold" 
+    cor: {
+        fontSize: 25,
+        color: "black",
+        fontWeight: "bold"
     }
 });
